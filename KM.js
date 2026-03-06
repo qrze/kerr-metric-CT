@@ -8,7 +8,7 @@ var id = "kerr_metric";
 var name = "Kerr Spacetime Dynamics";
 var description = "Production derived from rotating spacetime geometry.";
 var authors = "qrze, melon";
-var version = 1.1;
+var version = 1.1.2;
 
 var currency;
 
@@ -112,7 +112,7 @@ var init = () => {
     chapter1 = theory.createStoryChapter(
         0,
         "The Rotating Metric",
-        "Rotating masses distort spacetime.\n\nRoy Kerr discovered the exact rotating black hole solution.",
+        "Rotating masses distort spacetime.\n\nYou discovered the exact rotating black hole solution.",
         () => rUpgrade.level > 0
     );
 
@@ -138,6 +138,14 @@ var init = () => {
     );
 
     updateAvailability();
+
+    ///////////////////
+    // 2D Graph
+    theory.create2DGraph(currency, get2DGraphValue, {
+        title: "Currency",
+        xLabel: "Time",
+        yLabel: "Value"
+    });
 };
 
 var updateAvailability = () => {
@@ -149,9 +157,9 @@ var tick = (elapsedTime, multiplier) => {
     let dt = BigNumber.from(elapsedTime * multiplier);
     let bonus = theory.publicationMultiplier;
 
-    spin = Math.min(getSpin(spinUpgrade.level), 2);
+    spin = Math.min(getSpin(spinUpgrade.level), 1); // capped to 1
 
-    theta += elapsedTime * 0.1;
+    theta = (theta + elapsedTime * 0.1) % (2 * Math.PI); // theta wrapped
 
     let rVal = r.toNumber();
 
@@ -160,8 +168,7 @@ var tick = (elapsedTime, multiplier) => {
         spin * spin * Math.pow(Math.cos(theta), 2);
 
     let Delta =
-        rVal * rVal -
-        rVal +
+        rVal * rVal - rVal +
         spin * spin;
 
     Delta = Math.max(Delta, 1e-6);
