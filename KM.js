@@ -7,8 +7,8 @@ import { Utils } from "./api/Utils";
 var id = "kerr_metric";
 var name = "Kerr Spacetime Dynamics";
 var description = "Production derived from rotating spacetime geometry.";
-var authors = "qrze, melon";
-var version = 1.1.2;
+var authors = "melon, pwwraisedd";
+var version = 1.1.3;
 
 var currency;
 
