@@ -8,7 +8,7 @@ var id = "kerr_metric";
 var name = "Kerr Spacetime Dynamics";
 var description = "Production derived from rotating spacetime geometry.";
 var authors = "qrze, melon";
-var version = 1;
+var version = 1.1;
 
 var currency;
 
@@ -197,7 +197,7 @@ var getSecondaryEquation = () =>
 "\\Sigma=r^2+a^2\\cos^2\\theta\\\\\\Delta=r^2-r+a^2";
 
 var getPublicationMultiplier = (tau) =>
-tau.pow(0.18).div(BigNumber.TWO);
+tau.pow(0.18).divide(BigNumber.TWO);
 
 var getPublicationMultiplierFormula = (symbol) =>
 "\\frac{" + symbol + "^{0.18}}{2}";
